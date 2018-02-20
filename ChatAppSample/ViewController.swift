@@ -33,27 +33,27 @@ class ViewController: UIViewController,UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        var name = ""
-        if nameTextField.text == "" {
-            name = nameTextField.placeholder!
-        } else {
-            name = nameTextField.text!
-        }
-        let message = messageTextField.text!
-        messageTextField.text! = ""
-        
-        let messages = [
+        let name: String = {
+            if nameTextField.text == "" {
+                return self.nameTextField.placeholder!
+            } else {
+                return self.nameTextField.text!
+            }
+        }()
+        let message: String = messageTextField.text!
+        let messages: NSDictionary = [
             "name": name,
             "message": message,
-        ]
-        
+            ]
         // メッセージ情報を保存
         self.databaseRef
             .child("messages")
             .childByAutoId()
             .setValue(messages)
+        
+        
+        messageTextField.text! = ""
+        textField.resignFirstResponder()
         
         return true
     }
