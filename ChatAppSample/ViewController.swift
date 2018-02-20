@@ -23,6 +23,13 @@ class ViewController: UIViewController,UITextFieldDelegate {
         messageTextField.delegate = self
         
         databaseRef = Database.database().reference()
+        
+        databaseRef.child("messages").observe(DataEventType.childAdded) { (snapshot) -> Void in
+            let messageDict = snapshot.value as? NSDictionary
+            let name = messageDict?.value(forKey: "name") as! String
+            let message = messageDict?.value(forKey: "message") as! String
+            self.mesasgesTextView.text! += String(format: "%@: %@\n", name, message)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -35,7 +42,6 @@ class ViewController: UIViewController,UITextFieldDelegate {
             name = nameTextField.text!
         }
         let message = messageTextField.text!
-        mesasgesTextView.text! += String(format: "%@: %@\n", name, message)
         messageTextField.text! = ""
         
         let messages = [
