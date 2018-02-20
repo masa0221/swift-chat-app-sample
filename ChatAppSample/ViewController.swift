@@ -8,11 +8,31 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITextFieldDelegate {
 
+    @IBOutlet var mesasgesTextView: UITextView!
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var messageTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        messageTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        var name = ""
+        if nameTextField.text == "" {
+            name = nameTextField.placeholder!
+        } else {
+            name = nameTextField.text!
+        }
+        mesasgesTextView.text! += String(format: "%@: %@\n", name, messageTextField.text!)
+        messageTextField.text! = ""
+            
+        return true
     }
 
     override func didReceiveMemoryWarning() {
