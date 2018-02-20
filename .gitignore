@@ -4,6 +4,8 @@
 .idea
 **/node_modules/*
 **/.firebaserc
+GoogleService-Info.plist
+
 ### Swift ###
 # Xcode
 #
@@ -47,6 +49,7 @@ playground.xcworkspace
 .build/
 
 # CocoaPods - Refactored to standalone file
+Pods/
 
 # Carthage - Refactored to standalone file
 
@@ -79,6 +82,6 @@ fastlane/test_output
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
-
+.DS_Store
 
 # End of https://www.gitignore.io/api/xcode,swift,firebase
