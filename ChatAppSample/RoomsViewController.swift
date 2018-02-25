@@ -12,6 +12,9 @@ import Firebase
 class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet var roomsTableView: UITableView!
+    @IBAction func createRoomButton(_ sender: Any) {
+        displayCreateRoomAlert()
+    }
     
     var databaseRef: DatabaseReference!
     var rooms: [Dictionary<String, AnyObject>]! = []
@@ -63,6 +66,57 @@ class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             let roomViewController: ViewController = segue.destination as! ViewController
             roomViewController.roomInfo = sender as! Dictionary<String, AnyObject>
         }
+    }
+    
+    func displayCreateRoomAlert() {
+        let alert: UIAlertController = UIAlertController(
+            title: "Create chat room",
+            message: "What name for new chat room?",
+            preferredStyle: UIAlertControllerStyle.alert
+        )
+        let okAction: UIAlertAction = UIAlertAction(
+            title: "Create",
+            style: UIAlertActionStyle.default,
+            handler: { (action) in
+                let textFields: Array<UITextField>? = alert.textFields
+                if textFields != nil {
+                    for textField: UITextField in textFields! {
+                        let roomName = textField.text! as String
+                        if !roomName.isEmpty {
+                            self.createRoom(roomName: roomName)
+                        }
+                    }
+                }
+            }
+        )
+        
+        let cancelAction: UIAlertAction = UIAlertAction(
+            title: "Cancel",
+            style: UIAlertActionStyle.cancel,
+            handler: nil
+        )
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        alert.addTextField { (textField: UITextField) in
+            textField.placeholder = "Chat room name"
+        }
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func createRoom(roomName: String) {
+        var roomInfo = [
+            "name": roomName,
+        ];
+        
+        // データを作成
+        let roomId = databaseRef.childByAutoId().key
+        databaseRef
+            .child(roomId)
+            .setValue(roomInfo)
+        
+        // 画面遷移
+        roomInfo.updateValue(roomId, forKey: "roomId")
+        self.performSegue(withIdentifier: "toRoom", sender: roomInfo)
     }
     
 

@@ -81,7 +81,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qYS-WK-hwd"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat Rooms" id="Hr5-sA-Dvo"/>
+                    <navigationItem key="navigationItem" title="Chat Rooms" id="Hr5-sA-Dvo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="NXy-Ni-uUD">
+                            <connections>
+                                <action selector="createRoomButton:" destination="e9W-8M-wyb" id="q7R-BZ-Hax"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="roomsTableView" destination="afg-mM-5ZX" id="qBM-y7-RS7"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toRoom" id="rH6-Xw-WcE"/>
