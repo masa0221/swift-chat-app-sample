@@ -10,21 +10,25 @@ import UIKit
 import Firebase
 
 class ViewController: UIViewController,UITextFieldDelegate {
-
+    
     @IBOutlet var mesasgesTextView: UITextView!
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var messageTextField: UITextField!
     
     var databaseRef: DatabaseReference!
+    var roomInfo: Dictionary<String, AnyObject>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         messageTextField.delegate = self
         
-        databaseRef = Database.database().reference()
+        self.navigationItem.title = roomInfo["name"] as? String
         
-        databaseRef.child("messages").observe(DataEventType.childAdded) { (snapshot) -> Void in
+        let roomId = roomInfo["roomId"] as! String
+        databaseRef = Database.database().reference(withPath: "messages/\(roomId)")
+        
+        databaseRef.observe(DataEventType.childAdded) { (snapshot) -> Void in
             let messageDict = snapshot.value as? NSDictionary
             let name = messageDict?.value(forKey: "name") as! String
             let message = messageDict?.value(forKey: "message") as! String
@@ -47,7 +51,6 @@ class ViewController: UIViewController,UITextFieldDelegate {
             ]
         // メッセージ情報を保存
         self.databaseRef
-            .child("messages")
             .childByAutoId()
             .setValue(messages)
         
