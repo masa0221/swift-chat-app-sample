@@ -26,9 +26,13 @@ class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         roomsTableView.delegate = self
         roomsTableView.dataSource = self
 
-        // ルーム情報取得
         databaseRef = Database.database().reference(withPath: "rooms")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // ルーム情報取得
         databaseRef.observeSingleEvent(of: DataEventType.value) { (snapshot) in
+            self.rooms.removeAll()
             if let rooms = snapshot.value as? [String: NSDictionary] {
                 for (roomId, roomInfo) in rooms {
                     roomInfo.setValue(roomId, forKey: "roomId")
