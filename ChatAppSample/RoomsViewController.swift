@@ -16,6 +16,7 @@ class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         displayCreateRoomAlert()
     }
     
+    var refreshControl: UIRefreshControl!
     var databaseRef: DatabaseReference!
     var rooms: [Dictionary<String, AnyObject>]! = []
     
@@ -25,11 +26,24 @@ class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         // UITableView
         roomsTableView.delegate = self
         roomsTableView.dataSource = self
+        
+        // UIRefreshControl
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self,
+            action: #selector(self.refresh),
+            for: UIControlEvents.valueChanged
+        )
+        roomsTableView.addSubview(refreshControl)
 
         databaseRef = Database.database().reference(withPath: "rooms")
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.refresh()
+    }
+    
+    @objc func refresh() {
         // ルーム情報取得
         databaseRef.observeSingleEvent(of: DataEventType.value) { (snapshot) in
             self.rooms.removeAll()
@@ -41,6 +55,7 @@ class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             }
             
             self.roomsTableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
     
