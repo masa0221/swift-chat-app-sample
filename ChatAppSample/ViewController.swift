@@ -24,6 +24,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         messageTextField.delegate = self
         
         self.navigationItem.title = roomInfo["name"] as? String
+        self.nameTextField.text! = UserDefaults.standard.object(forKey: "name") as! String
         
         let roomId = roomInfo["roomId"] as! String
         databaseRef = Database.database().reference(withPath: "messages/\(roomId)")

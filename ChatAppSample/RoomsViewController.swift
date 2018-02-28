@@ -15,6 +15,16 @@ class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     @IBAction func createRoomButton(_ sender: Any) {
         displayCreateRoomAlert()
     }
+    @IBAction func logout(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
+            let initialViewController = storyboard.instantiateInitialViewController()
+            present(initialViewController!, animated: true, completion: nil)
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+    }
     
     var refreshControl: UIRefreshControl!
     var databaseRef: DatabaseReference!
@@ -22,6 +32,9 @@ class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let barButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = barButtonItem
 
         // UITableView
         roomsTableView.delegate = self
