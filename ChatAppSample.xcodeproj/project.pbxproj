@@ -390,6 +390,7 @@
 				DEVELOPMENT_TEAM = 7XJLAX5T3J;
 				INFOPLIST_FILE = ChatAppSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = info.2626.ChatAppSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -408,6 +409,7 @@
 				DEVELOPMENT_TEAM = 7XJLAX5T3J;
 				INFOPLIST_FILE = ChatAppSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = info.2626.ChatAppSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

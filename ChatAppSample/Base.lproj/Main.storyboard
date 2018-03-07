@@ -19,35 +19,57 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eih-g8-uvQ">
-                                <rect key="frame" x="16" y="85" width="343" height="479"/>
+                                <rect key="frame" x="16" y="85" width="343" height="512"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vkx-fF-LF4">
-                                <rect key="frame" x="16" y="617" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="anonymous" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fcu-5d-6qG">
-                                <rect key="frame" x="16" y="579" width="134" height="30"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JzQ-gf-ex9">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fI2-rE-dG5">
+                                        <rect key="frame" x="8" y="10" width="313" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ub-aS-NJV">
+                                        <rect key="frame" x="329" y="10" width="36" height="30"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="postButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wCd-NN-NKF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="fI2-rE-dG5" firstAttribute="top" secondItem="JzQ-gf-ex9" secondAttribute="top" constant="10" id="0n3-bo-PtV"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Ub-aS-NJV" secondAttribute="trailing" constant="10" id="8r9-jc-zBM"/>
+                                    <constraint firstAttribute="height" constant="49" id="9bl-py-Izr"/>
+                                    <constraint firstItem="3Ub-aS-NJV" firstAttribute="leading" secondItem="fI2-rE-dG5" secondAttribute="trailing" constant="8" symbolic="YES" id="IIT-qb-bWW"/>
+                                    <constraint firstItem="3Ub-aS-NJV" firstAttribute="centerY" secondItem="JzQ-gf-ex9" secondAttribute="centerY" id="JX7-a1-vXh"/>
+                                    <constraint firstItem="fI2-rE-dG5" firstAttribute="top" secondItem="3Ub-aS-NJV" secondAttribute="top" id="QXN-B9-Jzc"/>
+                                    <constraint firstItem="fI2-rE-dG5" firstAttribute="leading" secondItem="JzQ-gf-ex9" secondAttribute="leading" constant="8" id="n6D-EF-cJI"/>
+                                    <constraint firstAttribute="bottom" secondItem="fI2-rE-dG5" secondAttribute="bottom" constant="9" id="zOH-rp-npU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JzQ-gf-ex9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Uaf-Eu-5DK"/>
+                            <constraint firstItem="JzQ-gf-ex9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gz0-LO-viy"/>
+                            <constraint firstAttribute="bottom" secondItem="JzQ-gf-ex9" secondAttribute="bottom" id="i3n-6T-1DM"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="WKd-de-NyR"/>
                     <connections>
                         <outlet property="mesasgesTextView" destination="eih-g8-uvQ" id="2de-dv-uSQ"/>
-                        <outlet property="messageTextField" destination="vkx-fF-LF4" id="V5o-Kt-QLq"/>
-                        <outlet property="nameTextField" destination="fcu-5d-6qG" id="K8B-Bk-ysq"/>
+                        <outlet property="messageTextView" destination="fI2-rE-dG5" id="zO4-5o-GrY"/>
+                        <outlet property="messageView" destination="JzQ-gf-ex9" id="ZBB-Mr-zBm"/>
+                        <outlet property="messageViewLayoutConstant" destination="9bl-py-Izr" id="4xp-fZ-x0Q"/>
+                        <outlet property="postButton" destination="3Ub-aS-NJV" id="7TO-5S-WdA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
