@@ -11,5 +11,6 @@ target 'ChatAppSample' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'SlideMenuControllerSwift'
 
 end

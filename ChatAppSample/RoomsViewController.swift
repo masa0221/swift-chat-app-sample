@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SlideMenuControllerSwift
 
 class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -15,15 +16,8 @@ class RoomsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     @IBAction func createRoomButton(_ sender: Any) {
         displayCreateRoomAlert()
     }
-    @IBAction func logout(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            let storyboard = UIStoryboard(name: "Login", bundle: nil)
-            let initialViewController = storyboard.instantiateInitialViewController()
-            present(initialViewController!, animated: true, completion: nil)
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
+    @IBAction func showMenu(_ sender: Any) {
+        self.slideMenuController()?.openLeft()
     }
     
     var refreshControl: UIRefreshControl!

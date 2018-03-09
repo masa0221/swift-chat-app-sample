@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import SlideMenuControllerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -27,8 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         var initialViewController: UIViewController!
         if let user = Auth.auth().currentUser {
             UserDefaults.standard.set(user.displayName, forKey: "name")
+            UserDefaults.standard.set(user.email, forKey: "email")
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            initialViewController = storyboard.instantiateInitialViewController()
+            let mainViewController = storyboard.instantiateInitialViewController()
+            let leftMenuViewController = storyboard.instantiateViewController(withIdentifier: "leftMenu")
+            initialViewController = SlideMenuController(mainViewController: mainViewController!, leftMenuViewController: leftMenuViewController)
         } else {
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             initialViewController = storyboard.instantiateInitialViewController()
@@ -72,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
             
             UserDefaults.standard.set(user?.displayName, forKey: "name")
+            UserDefaults.standard.set(user?.email, forKey: "email")
         }
     }
     
